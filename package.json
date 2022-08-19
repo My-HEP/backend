@@ -1,0 +1,23 @@
+{
+  "name": "workspace",
+  "version": "1.0.0",
+  "description": "MY HEP backend node.js server",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/My-HEP/backend.git"
+  },
+  "author": "Kristen Coy and Kayla Alewine",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/My-HEP/backend/issues"
+  },
+  "homepage": "https://github.com/My-HEP/backend#readme",
+  "dependencies": {
+    "express": "^4.18.1"
+  }
+}
