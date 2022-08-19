@@ -12,6 +12,6 @@ HEP stands for "home exercise program." If you've ever gone to any type of physi
 
 [<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRd7DIxxjP1YvVf-XMu_3CR2OdIX9RrCCD4fQ&usqp=CAU" width="50" height="50"/> PostgreSQL - object relational database](https://www.postgresql.org)
 
-[<img src="https://seeklogo.com/free-vector-logos/prisma" width="50" height="50"/>Prisma - object relational modeling tool](https://www.prisma.io)
+[<img src="https://cdn.worldvectorlogo.com/logos/prisma-3.svg" width="50" height="50"/>Prisma - object relational modeling tool](https://www.prisma.io)
 
 [<img src="https://icon-icons.com/icon/sentry-logo/144898" width="50" height="50"/>Sentry - crash monitoring](https://sentry.io)
