@@ -6,7 +6,7 @@ HEP stands for "home exercise program." If you've ever gone to any type of physi
 ## The Backend Stack
 [<img src="https://github.com/FortAwesome/Font-Awesome/blob/6.x/svgs/brands/node-js.svg" width="50" height="50"/> Node.js - server](https://nodejs.org/en/)
 
-[Express.js - node.js web framework](https://expressjs.com)
+[<img src="https://assets.website-files.com/61ca3f775a79ec5f87fcf937/6202fcdee5ee8636a145a41b_1234.png" width="50" height="50"/>Express.js - node.js web framework](https://expressjs.com)
 
 <img src="https://github.com/FortAwesome/Font-Awesome/blob/6.x/svgs/brands/docker.svg" width="50" height="50"/>Docker - containerization](https://www.docker.com) 
 
