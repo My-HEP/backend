@@ -14,4 +14,4 @@ HEP stands for "home exercise program." If you've ever gone to any type of physi
 
 [<img src="https://cdn.worldvectorlogo.com/logos/prisma-3.svg" width="50" height="50"/>Prisma - object relational modeling tool](https://www.prisma.io)
 
-[<img src="https://icon-icons.com/icon/sentry-logo/144898" width="50" height="50"/>Sentry - crash monitoring](https://sentry.io)
+[<img src="https://brandslogos.com/wp-content/uploads/images/large/sentry-logo-black-and-white.png" width="50" height="50"/>Sentry - crash monitoring](https://sentry.io)
