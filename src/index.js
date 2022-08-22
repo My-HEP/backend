@@ -1,4 +1,8 @@
 const express = require('express')
+const Sentry = require("@sentry/node");
+const Tracing = require("@sentry/tracing");
+
+
 const app = express()
 const port = 3000
 

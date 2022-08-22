@@ -11,6 +11,20 @@
 	"customizations": {
 		// Configure properties specific to VS Code.
 		"vscode": {
+				"settings": {
+					"sqltools.connections": [
+						{
+							"previewLimit": 50,
+							"server": "localhost",
+							"port": 5432,
+							"askForPassword": true,
+							"driver": "PostgreSQL",
+							"name": "HEP database",
+							"database": "postgres",
+							"username": "postgres"
+						}
+					]
+				},
 			// Add the IDs of extensions you want installed when the container is created.
 			"extensions": [
 				"dbaeumer.vscode-eslint", 
