@@ -18,14 +18,14 @@ Sentry.init({
 app.use(Sentry.Handlers.requestHandler());
 app.use(Sentry.Handlers.tracingHandler());
 
+app.use(cors());
+
 app.get('/', (req, res) => {
   // throw Error ("Hi mom!")
   res.send({'hep_backend': 'Hello World!'})
 })
 
 app.use(Sentry.Handlers.errorHandler());
-
-app.use(cors());
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)
