@@ -1,9 +1,11 @@
 const express = require('express');
 const Sentry = require('@sentry/node');
 const Tracing = require('@sentry/tracing');
+const cors = require('cors');
+
 
 const app = express();
-const port = 3000;
+const port = 3001;
 
 Sentry.init({
   dsn: 'https://23762ca7a2274c619b476cf0ccad0580@o1372411.ingest.sentry.io/6677310',
@@ -17,6 +19,8 @@ Sentry.init({
 
 app.use(Sentry.Handlers.requestHandler());
 app.use(Sentry.Handlers.tracingHandler());
+
+app.use(cors());
 
 app.get('/', (req, res) => {
   res.send('Hello World!');
