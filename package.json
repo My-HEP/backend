@@ -4,7 +4,7 @@
   "description": "MY HEP backend node.js server",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js",
+    "start": "node src/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -18,6 +18,13 @@
   },
   "homepage": "https://github.com/My-HEP/backend#readme",
   "dependencies": {
+    "@prisma/client": "^4.2.1",
+    "@sentry/node": "^7.11.1",
+    "@sentry/tracing": "^7.11.1",
+    "cors": "^2.8.5",
     "express": "^4.18.1"
+  },
+  "devDependencies": {
+    "prisma": "^4.2.1"
   }
 }
