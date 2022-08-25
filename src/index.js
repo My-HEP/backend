@@ -22,7 +22,7 @@ app.use(cors());
 
 app.get('/', (req, res) => {
   // throw Error ("Hi mom!")
-  res.send({'hep_backend': 'Hello World!'})
+  res.send({'hep_backend': 'Hello World! This is My HEP.'})
 })
 
 app.use(Sentry.Handlers.errorHandler());
