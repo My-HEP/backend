@@ -4,11 +4,11 @@
             "previewLimit": 50,
             "server": "localhost",
             "port": 5432,
-            "askForPassword": true,
             "driver": "PostgreSQL",
-            "name": "Postgres",
             "database": "myhep_local",
-            "username": "admin"
+            "username": "postgres",
+            "name": "MYHEP_DB",
+            "password": "postgres"
         }
     ],
     "prettier.singleQuote": true
