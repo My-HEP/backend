@@ -10,8 +10,16 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model HelloWorld {
-  id    Int     @id @default(autoincrement())
-  email String  @unique
-  name  String?
+model User {
+  id        Int     @id @default(autoincrement())
+  lastName  String?
+  firstName String?
+  phone     Int
+  email     String  @unique
+  role      Role    @default(PATIENT)
+}
+
+enum Role {
+  THERAPIST
+  PATIENT
 }
