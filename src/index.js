@@ -2,7 +2,7 @@ const express = require('express');
 const Sentry = require('@sentry/node');
 const Tracing = require('@sentry/tracing');
 const cors = require('cors');
-
+const bodyParser = require('body-parser');
 
 const app = express();
 const port = 3001;
@@ -19,11 +19,15 @@ Sentry.init({
 
 app.use(Sentry.Handlers.requestHandler());
 app.use(Sentry.Handlers.tracingHandler());
-
+app.use(bodyParser.json());
 app.use(cors());
 
 app.get('/', (req, res) => {
-  res.send({'hep_backend': 'Hello World!'});
+  res.send({ hep_backend: 'Hello World!' });
+});
+
+app.post('/user', (req, res) => {
+  console.log(req.body);
 });
 
 app.use(Sentry.Handlers.errorHandler());
