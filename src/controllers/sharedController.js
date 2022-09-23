@@ -1,9 +1,23 @@
-const registerUser = (req, res) => {
-  console.log(req.body.uid);
-  const uid = req.body.uid;
-  const email = req.body.email;
-  
-  res.send('Register route');
+const { PrismaClient } = require('@prisma/client');
+const database = new PrismaClient();
+
+const registerUser = async (req, res) => {
+  const { email, firstName, lastName, phoneNumber, uid } = req.body;
+  const phone = parseInt(phoneNumber);
+  try {
+    const user = await database.User.create({
+      data: {
+        email,
+        firstName,
+        lastName,
+        phone,
+        uid,
+      },
+    });
+    res.status(200).json({ user });
+  } catch (error) {
+    res.status(500).json({ error: 'Something went wrong. Try again later.' });
+  }
 };
 
 const loginUser = (req, res) => {
