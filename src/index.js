@@ -4,6 +4,7 @@ const Tracing = require('@sentry/tracing');
 const cors = require('cors');
 
 const sharedRoutes = require('./routes/sharedRoutes');
+const therapistRoutes = require('./routes/therapistRoutes');
 
 const app = express();
 const port = 3001;
@@ -34,6 +35,7 @@ app.use(cors());
 
 // Routes
 app.use('/user', sharedRoutes);
+app.use('/therapist', therapistRoutes);
 
 app.use(Sentry.Handlers.errorHandler());
 
