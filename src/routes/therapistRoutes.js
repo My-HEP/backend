@@ -18,4 +18,11 @@ router.post('/patients', (req, res) => {
   res.send('therapist post request');
 });
 
+// router.delete('/patients', async (req, res) => {
+//   const deleted = await database.user.deleteMany({
+//     where: { role: 'PATIENT' },
+//   });
+//   res.send(200);
+// });
+
 module.exports = router;

@@ -3,7 +3,7 @@ const database = new PrismaClient();
 
 const registerUser = async (req, res) => {
   const { email, firstName, lastName, phoneNumber, uid } = req.body;
-  const phone = parseInt(phoneNumber);
+  const phone = parseInt(phoneNumber.replace(/-/g, ''));
   try {
     const user = await database.User.create({
       data: {
