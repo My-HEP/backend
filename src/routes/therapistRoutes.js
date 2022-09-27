@@ -9,7 +9,6 @@ router.get('/patients', async (req, res) => {
   const patients = await database.user.findMany({
     where: { role: 'PATIENT' },
   });
-  console.log(patients);
 
   res.json(patients);
 });
