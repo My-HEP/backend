@@ -1,18 +1,13 @@
 const express = require('express');
 const router = express.Router();
-const { registerUser, loginUser } = require('../controllers/sharedController');
-const { PrismaClient } = require('@prisma/client');
-const database = new PrismaClient();
+const {
+  registerUser,
+  loginUser,
+  returnUserData,
+} = require('../controllers/sharedController');
 
 router.post('/', registerUser);
 router.post('/login', loginUser);
-
-router.post('/user', async (req, res) => {
-  const uid = req.body.uid;
-  const userData = await database.user.findUnique({ where: { uid: uid } });
-  console.log(userData);
-
-  res.json(userData);
-});
+router.post('/user', returnUserData);
 
 module.exports = router;
