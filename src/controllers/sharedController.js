@@ -1,7 +1,7 @@
 const { PrismaClient } = require('@prisma/client');
 const database = new PrismaClient();
 
-const registerUser = async (req, res) => {
+const createUserAccount = async (req, res) => {
   const { email, firstName, lastName, phoneNumber, uid } = req.body;
   const phone = parseInt(phoneNumber.replace(/-/g, ''));
   try {
@@ -20,10 +20,6 @@ const registerUser = async (req, res) => {
   }
 };
 
-const loginUser = (req, res) => {
-  res.send('Login route');
-};
-
 const returnUserData = async (req, res) => {
   const uid = req.body.uid;
   const userData = await database.user.findUnique({ where: { uid: uid } });
@@ -31,7 +27,7 @@ const returnUserData = async (req, res) => {
 };
 
 module.exports = {
-  registerUser,
+  createUserAccount,
   loginUser,
   returnUserData,
 };

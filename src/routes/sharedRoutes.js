@@ -1,13 +1,12 @@
 const express = require('express');
 const router = express.Router();
 const {
-  registerUser,
+  createUserAccount,
   loginUser,
   returnUserData,
 } = require('../controllers/sharedController');
 
-router.post('/', registerUser);
-router.post('/login', loginUser);
+router.post('/createUserAccount', createUserAccount);
 router.post('/user', returnUserData);
 
 module.exports = router;
