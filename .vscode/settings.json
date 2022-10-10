@@ -1,15 +1,16 @@
 {
-    "sqltools.connections": [
-        {
-            "previewLimit": 50,
-            "server": "localhost",
-            "port": 5432,
-            "driver": "PostgreSQL",
-            "database": "myhep_local",
-            "username": "postgres",
-            "name": "MYHEP_DB",
-            "password": "postgres"
-        }
-    ],
-    "prettier.singleQuote": true
+  "sqltools.connections": [
+    {
+      "previewLimit": 50,
+      "server": "localhost",
+      "port": 5432,
+      "driver": "PostgreSQL",
+      "database": "myhep_local",
+      "username": "postgres",
+      "name": "MYHEP_DB",
+      "password": "postgres"
+    }
+  ],
+  "prettier.singleQuote": true,
+  "prisma.fileWatcher": true
 }

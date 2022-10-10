@@ -12,12 +12,42 @@ datasource db {
 
 model User {
   id        Int     @id @default(autoincrement())
-  uid       String? @unique
+  uid       String  @unique
   lastName  String?
   firstName String?
   phone     Int
   email     String  @unique
   role      Role    @default(PATIENT)
+  hepExercises HEPExercise[]
+  assigner HEPExercise? @relation("Therapist")
+}
+
+model Exercise {
+  id  Int @id @default(autoincrement())
+  url String?
+  tags Tag[]
+  title String
+  heps HEPExercise[]
+}
+
+model Tag {
+  id  Int @id @default(autoincrement())
+  title String
+  exercise  Exercise[]
+}
+
+model HEPExercise {
+  // could this be an implicit relation instead of explicit?
+  exercise  Exercise @relation(fields: [exerciseId], references: [id])
+  exerciseId Int
+  patient User @relation(fields: [patientId], references: [uid]) // patient uid
+  patientId String
+  frequency String?
+  duration  String?
+  notes String?
+  assignedBy User @relation(name: "Therapist", fields: [assignedById], references: [uid])
+  assignedById String @unique
+  @@id([patientId, exerciseId])
 }
 
 enum Role {

@@ -13,15 +13,37 @@ router.get('/patients', async (req, res) => {
   res.json(patients);
 });
 
-router.post('/patients', (req, res) => {
+// @todo create add patient route - Kristen
+// send email with temporary password - patient will then login
+router.post('/addPatient', (req, res) => {
   res.send('therapist post request');
 });
 
-// router.delete('/patients', async (req, res) => {
+// @todo create delete patient route
+// can refactor code below
+
+// router.delete('/deletePatient', async (req, res) => {
 //   const deleted = await database.user.deleteMany({
 //     where: { role: 'PATIENT' },
 //   });
 //   res.send(200);
 // });
+
+// @todo update patient route - Kayla or Kristen
+router.put('/updatePatient', (req, res) => {
+  res.send('update patient');
+});
+
+// @todo addHEPExercise - Kayla
+router.post('/addHEPExercise');
+
+// @todo updateHEPExercise - Kayla
+router.put('/updateHEPExercise');
+
+// @todo addExercise - Kristen
+router.post('/addExercise');
+
+// @todo removeExercise - Kristen
+router.delete('/removeExercise');
 
 module.exports = router;

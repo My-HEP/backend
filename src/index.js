@@ -34,6 +34,8 @@ app.use(cors());
 // });
 
 // Routes
+
+// change /user route to just root route
 app.use('/user', sharedRoutes);
 app.use('/therapist', therapistRoutes);
 
