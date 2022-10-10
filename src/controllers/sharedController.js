@@ -28,6 +28,5 @@ const returnUserData = async (req, res) => {
 
 module.exports = {
   createUserAccount,
-  loginUser,
   returnUserData,
 };

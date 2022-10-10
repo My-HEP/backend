@@ -17,34 +17,37 @@ model User {
   firstName String?
   phone     Int
   email     String  @unique
-  therapist String?  // therapist uid
   role      Role    @default(PATIENT)
   hepExercises HEPExercise[]
+  assigner HEPExercise? @relation("Therapist")
 }
 
 model Exercise {
   id  Int @id @default(autoincrement())
   url String?
-  tag String?
+  tags Tag[]
   title String
   heps HEPExercise[]
+}
+
+model Tag {
+  id  Int @id @default(autoincrement())
+  title String
+  exercise  Exercise[]
 }
 
 model HEPExercise {
   // could this be an implicit relation instead of explicit?
   exercise  Exercise @relation(fields: [exerciseId], references: [id])
   exerciseId Int
-  user User @relation(fields: [userId], references: [uid]) // patient uid
-  userId String
+  patient User @relation(fields: [patientId], references: [uid]) // patient uid
+  patientId String
   frequency String?
   duration  String?
   notes String?
-  // maybe we could pull the therapistID from the user relationship? like user.therapist or whatever the
-  // syntax would be?
-  // therapist User? @relation(fields: [therapistId], references: [uid])    // therapist uid
-  // therapistId String
-  assignedBy String?
-  @@id([userId, exerciseId])
+  assignedBy User @relation(name: "Therapist", fields: [assignedById], references: [uid])
+  assignedById String @unique
+  @@id([patientId, exerciseId])
 }
 
 enum Role {

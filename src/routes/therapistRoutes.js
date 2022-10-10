@@ -13,7 +13,8 @@ router.get('/patients', async (req, res) => {
   res.json(patients);
 });
 
-// @todo create add patient route
+// @todo create add patient route - Kristen
+// send email with temporary password - patient will then login
 router.post('/addPatient', (req, res) => {
   res.send('therapist post request');
 });
@@ -28,21 +29,21 @@ router.post('/addPatient', (req, res) => {
 //   res.send(200);
 // });
 
-// @todo update patient route
+// @todo update patient route - Kayla or Kristen
 router.put('/updatePatient', (req, res) => {
   res.send('update patient');
 });
 
-// @todo addHEPExercise
+// @todo addHEPExercise - Kayla
 router.post('/addHEPExercise');
 
-// @todo updateHEPExercise
+// @todo updateHEPExercise - Kayla
 router.put('/updateHEPExercise');
 
-// @todo addExercise
+// @todo addExercise - Kristen
 router.post('/addExercise');
 
-// @todo removeExercise
+// @todo removeExercise - Kristen
 router.delete('/removeExercise');
 
 module.exports = router;
