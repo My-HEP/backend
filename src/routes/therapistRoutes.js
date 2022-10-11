@@ -1,6 +1,12 @@
 const express = require('express');
 const router = express.Router();
 
+const {
+  addExercise,
+  deleteExercise,
+  getExercises,
+} = require('../controllers/therapistController');
+
 const { PrismaClient } = require('@prisma/client');
 const database = new PrismaClient();
 
@@ -40,10 +46,11 @@ router.post('/addHEPExercise');
 // @todo updateHEPExercise - Kayla
 router.put('/updateHEPExercise');
 
-// @todo addExercise - Kristen
-router.post('/addExercise');
+// Exercise Library View/Page
+router.get('/exercises', getExercises);
 
-// @todo removeExercise - Kristen
-router.delete('/removeExercise');
+router.post('/addExercise', addExercise);
+
+router.delete('/deleteExercise', deleteExercise);
 
 module.exports = router;
