@@ -21,9 +21,8 @@ router.get('/patients', async (req, res) => {
 
 // @todo create add patient route - Kristen
 // send email with temporary password - patient will then login
-router.post('/addPatient', (req, res) => {
-  res.send('therapist post request');
-});
+// We don't actually need this route because the functionality already lives in shared - create account
+// router.post('/addPatient', createUserAccount);
 
 // @todo create delete patient route
 // can refactor code below
