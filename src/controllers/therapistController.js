@@ -32,7 +32,15 @@ const addExercise = async (req, res) => {
 // read exercises from exercise library
 const getExercises = async (req, res) => {
   try {
-    const exercises = await database.Exercise.findMany();
+    const exercises = await database.Exercise.findMany({
+      include: {
+        tags: {
+          select: {
+            title: true,
+          },
+        },
+      },
+    });
     res.json(exercises);
   } catch (error) {
     res.json({ message: 'something went wrong' });
