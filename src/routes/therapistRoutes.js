@@ -5,6 +5,7 @@ const {
   addExercise,
   deleteExercise,
   getExercises,
+  addPatient,
 } = require('../controllers/therapistController');
 
 const { PrismaClient } = require('@prisma/client');
@@ -19,10 +20,13 @@ router.get('/patients', async (req, res) => {
   res.json(patients);
 });
 
+// add patient not long in with new uid
+// firebase generated change password
+
 // @todo create add patient route - Kristen
 // send email with temporary password - patient will then login
 // We don't actually need this route because the functionality already lives in shared - create account
-// router.post('/addPatient', createUserAccount);
+router.post('/addPatient', addPatient);
 
 // @todo create delete patient route
 // can refactor code below

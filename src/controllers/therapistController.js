@@ -64,8 +64,29 @@ const deleteExercise = async (req, res) => {
   }
 };
 
+//add new patient
+const addPatient = async (req, res) => {
+  console.log(req.body);
+  const { email, firstName, lastName, phoneNumber } = req.body;
+  const phone = parseInt(phoneNumber.replace(/-/g, ''));
+  try {
+    const user = await database.User.create({
+      data: {
+        email,
+        firstName,
+        lastName,
+        phone,
+      },
+    });
+    res.status(200).json({ user });
+  } catch (error) {
+    res.status(500).json({ error: 'Something went wrong. Try again later.' });
+  }
+};
+
 module.exports = {
   addExercise,
   deleteExercise,
   getExercises,
+  addPatient,
 };
