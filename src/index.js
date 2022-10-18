@@ -3,6 +3,9 @@ const Sentry = require('@sentry/node');
 const Tracing = require('@sentry/tracing');
 const cors = require('cors');
 
+const { setupFirebase } = require('./firebase');
+require('dotenv').config();
+
 const sharedRoutes = require('./routes/sharedRoutes');
 const therapistRoutes = require('./routes/therapistRoutes');
 
@@ -18,6 +21,8 @@ Sentry.init({
   ],
   tracesSampleRate: 1.0,
 });
+
+setupFirebase();
 
 app.use(Sentry.Handlers.requestHandler());
 app.use(Sentry.Handlers.tracingHandler());

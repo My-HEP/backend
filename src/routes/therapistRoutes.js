@@ -6,6 +6,7 @@ const {
   deleteExercise,
   getExercises,
   addPatient,
+  deletePatient,
 } = require('../controllers/therapistController');
 
 const { PrismaClient } = require('@prisma/client');
@@ -31,12 +32,7 @@ router.post('/addPatient', addPatient);
 // @todo create delete patient route
 // can refactor code below
 
-// router.delete('/deletePatient', async (req, res) => {
-//   const deleted = await database.user.deleteMany({
-//     where: { role: 'PATIENT' },
-//   });
-//   res.send(200);
-// });
+router.delete('/deletePatient', deletePatient);
 
 // @todo update patient route - Kayla or Kristen
 router.put('/updatePatient', (req, res) => {

@@ -1,6 +1,8 @@
 const { PrismaClient } = require('@prisma/client');
 const database = new PrismaClient();
 
+const { getAuth } = require('firebase-admin/auth');
+
 // add exercise to exercise library
 const addExercise = async (req, res) => {
   const { url, title, tags } = req.body;
@@ -65,23 +67,50 @@ const deleteExercise = async (req, res) => {
 };
 
 //add new patient
+//only creates a user in the db - does
+//NOT create a user in firebase
 const addPatient = async (req, res) => {
-  console.log(req.body);
-  const { email, firstName, lastName, phoneNumber } = req.body;
+  const { email, firstName, lastName, phoneNumber, password } = req.body;
   const phone = parseInt(phoneNumber.replace(/-/g, ''));
+
+  const auth = getAuth();
+
   try {
-    const user = await database.User.create({
-      data: {
-        email,
-        firstName,
-        lastName,
-        phone,
-      },
+    const user = await auth.createUser({
+      email: email,
+      password: password,
     });
-    res.status(200).json({ user });
+    res.send(user);
   } catch (error) {
-    res.status(500).json({ error: 'Something went wrong. Try again later.' });
+    const message = error.message;
+    console.log(message);
+    res.status(500).json({ error });
   }
+
+  // try {
+  //   const user = await database.User.create({
+  //     data: {
+  //       email,
+  //       firstName,
+  //       lastName,
+  //       phone,
+  //     },
+  //   });
+  //   res.status(200).json({ user });
+  // } catch (error) {
+  //   res.status(500).json({ error: 'Something went wrong. Try again later.' });
+  // }
+};
+
+// delete patient
+const deletePatient = async (req, res) => {
+  const { uid } = req.body;
+  const deleted = await database.user.delete({
+    where: {
+      uid: { uid },
+    },
+  });
+  res.send(200);
 };
 
 module.exports = {
@@ -89,4 +118,5 @@ module.exports = {
   deleteExercise,
   getExercises,
   addPatient,
+  deletePatient,
 };
