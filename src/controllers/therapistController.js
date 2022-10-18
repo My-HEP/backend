@@ -87,19 +87,19 @@ const addPatient = async (req, res) => {
     res.status(500).json({ error });
   }
 
-  // try {
-  //   const user = await database.User.create({
-  //     data: {
-  //       email,
-  //       firstName,
-  //       lastName,
-  //       phone,
-  //     },
-  //   });
-  //   res.status(200).json({ user });
-  // } catch (error) {
-  //   res.status(500).json({ error: 'Something went wrong. Try again later.' });
-  // }
+  try {
+    const user = await database.User.create({
+      data: {
+        email,
+        firstName,
+        lastName,
+        phone,
+      },
+    });
+    res.status(200).json({ user });
+  } catch (error) {
+    res.status(500).json({ error: 'Something went wrong. Try again later.' });
+  }
 };
 
 // delete patient
