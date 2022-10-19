@@ -4,12 +4,20 @@ const router = express.Router();
 const { PrismaClient } = require('@prisma/client');
 const database = new PrismaClient();
 
+router.get('/homeStats', async (req, res) => {
+  const patients = await database.user.findMany({
+    where: { role: 'PATIENT' },
+  });
+  let patientsNum = patients.length
+  res.json(patientsNum);
+});
+
 // Select patient page of therapist view
 router.get('/patients', async (req, res) => {
   const patients = await database.user.findMany({
     where: { role: 'PATIENT' },
   });
-
+  patientsNum = patients.length
   res.json(patients);
 });
 
@@ -29,14 +37,25 @@ router.post('/addPatient', (req, res) => {
 //   res.send(200);
 // });
 
+// @todo get patient route - Kayla 
+router.get('/patient/:id', async (req, res) => {
+   let id = parseInt(req.params.id)
+   const patient = await database.user.findUnique({
+    where: { id },
+  });
+
+  res.json(patient);
+});
+
 // @todo update patient route - Kayla or Kristen
 router.put('/updatePatient', (req, res) => {
   res.send('update patient');
 });
 
 // @todo addHEPExercise - Kayla
-router.post('/addHEPExercise');
-
+router.post('/addHEPExercise', (req, res) => {
+  res.send('update HEP');
+});
 // @todo updateHEPExercise - Kayla
 router.put('/updateHEPExercise');
 
