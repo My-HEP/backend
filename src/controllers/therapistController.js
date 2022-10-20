@@ -6,7 +6,6 @@ const { getAuth } = require('firebase-admin/auth');
 // add exercise to exercise library
 const addExercise = async (req, res) => {
   const { url, title, tags } = req.body;
-  console.log('hitting add exercise route');
   console.log(req.body);
   try {
     const response = await database.Exercise.create({
@@ -45,7 +44,7 @@ const getExercises = async (req, res) => {
     });
     res.json(exercises);
   } catch (error) {
-    res.json({ message: 'something went wrong' });
+    res.json({ message: 'Something went wrong. Try again later.' });
   }
 };
 
@@ -67,8 +66,6 @@ const deleteExercise = async (req, res) => {
 };
 
 //add new patient
-//only creates a user in the db - does
-//NOT create a user in firebase
 const addPatient = async (req, res) => {
   const { email, firstName, lastName, phoneNumber, password } = req.body;
   const phone = parseInt(phoneNumber.replace(/-/g, ''));

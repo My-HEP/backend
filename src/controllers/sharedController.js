@@ -24,7 +24,7 @@ const createUserAccount = async (req, res) => {
 const returnUserData = async (req, res) => {
   const uid = req.body.uid;
   try {
-    const userData = await database.user.findUnique({ where: { uid: uid } });
+    const userData = await database.user.findFirst({ where: { uid: uid } });
     res.json(userData);
   } catch (error) {
     console.log(error);

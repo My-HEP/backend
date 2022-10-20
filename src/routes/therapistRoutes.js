@@ -13,6 +13,7 @@ const { PrismaClient } = require('@prisma/client');
 const database = new PrismaClient();
 
 // Select patient page of therapist view
+// @TODO refactor function into controller
 router.get('/patients', async (req, res) => {
   const patients = await database.user.findMany({
     where: { role: 'PATIENT' },
@@ -21,35 +22,32 @@ router.get('/patients', async (req, res) => {
   res.json(patients);
 });
 
-// add patient not long in with new uid
-// firebase generated change password
+// @TODO add patient count route
 
-// @todo create add patient route - Kristen
-// send email with temporary password - patient will then login
-// We don't actually need this route because the functionality already lives in shared - create account
+// add patient route
 router.post('/addPatient', addPatient);
 
-// @todo create delete patient route
-// can refactor code below
-
+// delete patient route
 router.delete('/deletePatient', deletePatient);
 
-// @todo update patient route - Kayla or Kristen
+// @ TODO update patient route - Kristen
 router.put('/updatePatient', (req, res) => {
   res.send('update patient');
 });
 
-// @todo addHEPExercise - Kayla
+// @ TODO addHEPExercise - Kayla
 router.post('/addHEPExercise');
 
-// @todo updateHEPExercise - Kayla
+// @ TODO updateHEPExercise - Kayla
 router.put('/updateHEPExercise');
 
 // Exercise Library View/Page
 router.get('/exercises', getExercises);
 
+// add new exercise to library route
 router.post('/addExercise', addExercise);
 
+// delete exercise from library route
 router.delete('/deleteExercise', deleteExercise);
 
 module.exports = router;
