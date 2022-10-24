@@ -40,8 +40,7 @@ app.use(cors());
 
 // Routes
 
-// change /user route to just root route
-app.use('/user', sharedRoutes);
+app.use('/', sharedRoutes);
 app.use('/therapist', therapistRoutes);
 
 app.use(Sentry.Handlers.errorHandler());
