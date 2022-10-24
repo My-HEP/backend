@@ -12,7 +12,7 @@ datasource db {
 
 model User {
   id        Int     @id @default(autoincrement())
-  uid       String  @unique
+  uid       String? @unique
   lastName  String?
   firstName String?
   phone     Int
@@ -23,7 +23,7 @@ model User {
 }
 
 model Exercise {
-  id  Int @id @default(autoincrement())
+  id  String @id @default(uuid())
   url String?
   tags Tag[]
   title String
@@ -32,21 +32,21 @@ model Exercise {
 
 model Tag {
   id  Int @id @default(autoincrement())
-  title String
+  title String @unique
   exercise  Exercise[]
 }
 
 model HEPExercise {
   // could this be an implicit relation instead of explicit?
   exercise  Exercise @relation(fields: [exerciseId], references: [id])
-  exerciseId Int
-  patient User @relation(fields: [patientId], references: [uid]) // patient uid
-  patientId String
+  exerciseId String
+  patient User @relation(fields: [patientId], references: [id]) // patient uid
+  patientId Int
   frequency String?
   duration  String?
   notes String?
-  assignedBy User @relation(name: "Therapist", fields: [assignedById], references: [uid])
-  assignedById String @unique
+  assignedBy User @relation(name: "Therapist", fields: [assignedById], references: [id])
+  assignedById Int @unique
   @@id([patientId, exerciseId])
 }
 

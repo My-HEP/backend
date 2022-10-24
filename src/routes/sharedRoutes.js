@@ -1,8 +1,8 @@
 const express = require('express');
 const router = express.Router();
+
 const {
   createUserAccount,
-  loginUser,
   returnUserData,
 } = require('../controllers/sharedController');
 

@@ -1,10 +1,19 @@
 const express = require('express');
 const router = express.Router();
 
+const {
+  addExercise,
+  deleteExercise,
+  getExercises,
+  addPatient,
+  deletePatient,
+} = require('../controllers/therapistController');
+
 const { PrismaClient } = require('@prisma/client');
 const database = new PrismaClient();
 
 // Select patient page of therapist view
+// @TODO refactor function into controller
 router.get('/patients', async (req, res) => {
   const patients = await database.user.findMany({
     where: { role: 'PATIENT' },
@@ -13,37 +22,32 @@ router.get('/patients', async (req, res) => {
   res.json(patients);
 });
 
-// @todo create add patient route - Kristen
-// send email with temporary password - patient will then login
-router.post('/addPatient', (req, res) => {
-  res.send('therapist post request');
-});
+// @TODO add patient count route
 
-// @todo create delete patient route
-// can refactor code below
+// add patient route
+router.post('/addPatient', addPatient);
 
-// router.delete('/deletePatient', async (req, res) => {
-//   const deleted = await database.user.deleteMany({
-//     where: { role: 'PATIENT' },
-//   });
-//   res.send(200);
-// });
+// delete patient route
+router.delete('/deletePatient', deletePatient);
 
-// @todo update patient route - Kayla or Kristen
+// @ TODO update patient route - Kristen
 router.put('/updatePatient', (req, res) => {
   res.send('update patient');
 });
 
-// @todo addHEPExercise - Kayla
+// @ TODO addHEPExercise - Kayla
 router.post('/addHEPExercise');
 
-// @todo updateHEPExercise - Kayla
+// @ TODO updateHEPExercise - Kayla
 router.put('/updateHEPExercise');
 
-// @todo addExercise - Kristen
-router.post('/addExercise');
+// Exercise Library View/Page
+router.get('/exercises', getExercises);
 
-// @todo removeExercise - Kristen
-router.delete('/removeExercise');
+// add new exercise to library route
+router.post('/addExercise', addExercise);
+
+// delete exercise from library route
+router.delete('/deleteExercise', deleteExercise);
 
 module.exports = router;
