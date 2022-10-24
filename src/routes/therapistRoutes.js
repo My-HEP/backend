@@ -5,6 +5,7 @@ const {
   addExercise,
   deleteExercise,
   getExercises,
+  getPatient,
   addPatient,
   deletePatient,
 } = require('../controllers/therapistController');
@@ -27,8 +28,12 @@ router.get('/patients', async (req, res) => {
 // add patient route
 router.post('/addPatient', addPatient);
 
+// get patient route
+router.get('/patient/:id', getPatient);
+
 // delete patient route
 router.delete('/deletePatient', deletePatient);
+
 
 // @ TODO update patient route - Kristen
 router.put('/updatePatient', (req, res) => {
