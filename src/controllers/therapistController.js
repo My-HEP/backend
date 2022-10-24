@@ -110,10 +110,21 @@ const deletePatient = async (req, res) => {
   res.send(200);
 };
 
+// get patient
+const getPatient = async (req, res) => {
+  let id = parseInt(req.params.id)
+  const patient = await database.user.findUnique({
+   where: { id },
+ });
+
+ res.json(patient);
+}
+
 module.exports = {
   addExercise,
   deleteExercise,
   getExercises,
   addPatient,
+  getPatient,
   deletePatient,
 };
