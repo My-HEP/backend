@@ -2,7 +2,6 @@ const { PrismaClient } = require('@prisma/client');
 const database = new PrismaClient();
 
 const createUserAccount = async (req, res) => {
-  console.log(req.body);
   const { email, firstName, lastName, phoneNumber, uid } = req.body;
   const phone = parseInt(phoneNumber.replace(/-/g, ''));
   try {

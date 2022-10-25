@@ -3,6 +3,17 @@ const database = new PrismaClient();
 
 const { getAuth } = require('firebase-admin/auth');
 
+// home stats for home page 
+const homeStats = async (req, res) => {
+  const patients = await database.user.findMany({
+    where: { role: 'PATIENT' },
+  });
+  let patientsNum = patients.length;
+  const exercises = await database.Exercise.findMany();
+  let exercisesNum = exercises.length;
+  res.json({patientsNum, exercisesNum});
+};
+
 // add exercise to exercise library
 const addExercise = async (req, res) => {
   const { url, title, tags } = req.body;
@@ -121,6 +132,7 @@ const getPatient = async (req, res) => {
 }
 
 module.exports = {
+  homeStats,
   addExercise,
   deleteExercise,
   getExercises,
