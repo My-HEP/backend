@@ -42,8 +42,10 @@ model HEPExercise {
   exerciseId String
   patient User @relation(fields: [patientId], references: [id]) // patient uid
   patientId Int
-  frequency String?
+  frequencyByDay String?
+  frequencyByWeek String?
   duration  String?
+  durationUnits String?
   notes String?
   assignedBy User @relation(name: "Therapist", fields: [assignedById], references: [id])
   assignedById Int @unique
