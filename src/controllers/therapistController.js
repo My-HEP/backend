@@ -133,29 +133,26 @@ const getPatient = async (req, res) => {
 
 // Add HEP exercise 
 const addHEPExercise = async (req, res) => {
-  const { exerciseId, frequency, duration, notes, patientId, assignedById } = req.body;
+  const { exerciseId, frequencyByDay, frequencyByWeek, duration, durationUnits, notes, patientId, assignedById } = req.body;
   console.log(req.body)
-  // try {
-  //   const response = await database.HEPExercise.create({
-  //     data: {
-  //       // id: id,
-  //       // this was failing before I changed
-  //       // the default on the  exercise schema to
-  //       // uuid() instead of autoincrement()
-  //       // was requiring an id to be sent in the
-  //       // req.body
-  //       url: url,
-  //       title: title,
-  //       tags: {
-  //         connect: tags,
-  //       },
-  //     },
-  //   });
-  //   console.log(response);
-  //   res.status(200).json(response);
-  // } catch (error) {
-  //   res.status(500).json({ error: 'Something went wrong. Try again later.' });
-  // }
+  try {
+    const response = await database.HEPExercise.create({
+      data: {
+        exerciseId,
+        frequencyByDay, 
+        frequencyByWeek, 
+        duration, 
+        durationUnits, 
+        notes, 
+        patientId, 
+        assignedById 
+      },
+    });
+    console.log(response);
+    res.status(200).json(response);
+  } catch (error) {
+    res.status(500).json({ error: 'Something went wrong. Try again later.' });
+  }
 }
 
 module.exports = {
