@@ -19,7 +19,7 @@ model User {
   email     String  @unique
   role      Role    @default(PATIENT)
   hepExercises HEPExercise[]
-  assigner HEPExercise? @relation("Therapist")
+  assigner HEPExercise[] @relation("Therapist")
 }
 
 model Exercise {
@@ -48,7 +48,7 @@ model HEPExercise {
   durationUnits String?
   notes String?
   assignedBy User @relation(name: "Therapist", fields: [assignedById], references: [id])
-  assignedById Int @unique
+  assignedById Int
   @@id([patientId, exerciseId])
 }
 
