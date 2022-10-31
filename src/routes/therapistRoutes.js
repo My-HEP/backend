@@ -7,6 +7,7 @@ const {
   getExercises,
   getPatient,
   addPatient,
+  addHEPExercise,
   homeStats,
   deletePatient,
 } = require('../controllers/therapistController');
@@ -43,7 +44,7 @@ router.put('/updatePatient', (req, res) => {
 });
 
 // @ TODO addHEPExercise - Kayla
-router.post('/addHEPExercise');
+router.post('/addHEPExercise', addHEPExercise);
 
 // @ TODO updateHEPExercise - Kayla
 router.put('/updateHEPExercise');

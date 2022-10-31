@@ -131,6 +131,30 @@ const getPatient = async (req, res) => {
  res.json(patient);
 }
 
+// Add HEP exercise 
+const addHEPExercise = async (req, res) => {
+  const { exerciseId, frequencyByDay, frequencyByWeek, duration, durationUnits, notes, patientId, assignedById } = req.body;
+  // console.log(req.body)
+  try {
+    const response = await database.HEPExercise.create({
+      data: {
+        exerciseId,
+        frequencyByDay, 
+        frequencyByWeek, 
+        duration, 
+        durationUnits, 
+        notes, 
+        patientId, 
+        assignedById 
+      },
+    });
+    console.log(response);
+    res.status(200).json(response);
+  } catch (error) {
+    res.status(500).json({ error: 'Something went wrong. Try again later.' });
+  }
+}
+
 module.exports = {
   homeStats,
   addExercise,
@@ -138,5 +162,6 @@ module.exports = {
   getExercises,
   addPatient,
   getPatient,
+  addHEPExercise,
   deletePatient,
 };

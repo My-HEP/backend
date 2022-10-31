@@ -2,7 +2,7 @@ const { PrismaClient } = require('@prisma/client');
 const database = new PrismaClient();
 
 const createUserAccount = async (req, res) => {
-  const { email, firstName, lastName, phoneNumber, uid } = req.body;
+  const { email, firstName, lastName, phoneNumber, uid, role } = req.body;
   const phone = parseInt(phoneNumber.replace(/-/g, ''));
   try {
     const user = await database.User.create({
@@ -11,8 +11,9 @@ const createUserAccount = async (req, res) => {
         firstName,
         lastName,
         phone,
-        uid,
-      },
+        uid, 
+        role
+      }
     });
     res.status(200).json({ user });
   } catch (error) {
