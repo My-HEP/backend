@@ -17,6 +17,7 @@ model User {
   firstName String?
   phone     Int
   email     String  @unique
+  avatar    String? 
   role      Role    @default(PATIENT)
   hepExercises HEPExercise[]
   assigner HEPExercise[] @relation("Therapist")
