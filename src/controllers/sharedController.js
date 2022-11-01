@@ -11,9 +11,9 @@ const createUserAccount = async (req, res) => {
         firstName,
         lastName,
         phone,
-        uid, 
-        role
-      }
+        uid,
+        role,
+      },
     });
     res.status(200).json({ user });
   } catch (error) {
@@ -31,7 +31,31 @@ const returnUserData = async (req, res) => {
   }
 };
 
+const updateUserData = async (req, res) => {
+  const { email, firstName, lastName, phoneNumber, uid, role, avatar } =
+    req.body;
+  const phone = parseInt(phoneNumber.replace(/-/g, ''));
+  try {
+    const updateUser = await database.user.update({
+      where: { uid: uid },
+      data: {
+        email,
+        firstName,
+        lastName,
+        phone,
+        role,
+        avatar,
+      },
+    });
+    res.status(200).json(updateUser);
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ error: 'Something went wrong. Try again later.' });
+  }
+};
+
 module.exports = {
   createUserAccount,
   returnUserData,
+  updateUserData,
 };
