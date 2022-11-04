@@ -1,4 +1,5 @@
 const { PrismaClient } = require('@prisma/client');
+const { consoleSandbox } = require('@sentry/utils');
 const database = new PrismaClient();
 
 const { getAuth } = require('firebase-admin/auth');
@@ -17,7 +18,6 @@ const homeStats = async (req, res) => {
 // add exercise to exercise library
 const addExercise = async (req, res) => {
   const { url, title, tags } = req.body;
-  console.log(req.body);
   try {
     const response = await database.Exercise.create({
       data: {
@@ -34,7 +34,6 @@ const addExercise = async (req, res) => {
         },
       },
     });
-    console.log(response);
     res.status(200).json(response);
   } catch (error) {
     res.status(500).json({ error: 'Something went wrong. Try again later.' });
@@ -69,7 +68,6 @@ const deleteExercise = async (req, res) => {
         id: id,
       },
     });
-    console.log(deletedExercise);
     res.status(200).json(deletedExercise);
   } catch (error) {
     res.status(500).json({ error: 'Something went wrong. Try again later.' });
@@ -91,7 +89,6 @@ const addPatient = async (req, res) => {
     res.send(user);
   } catch (error) {
     const message = error.message;
-    console.log(message);
     res.status(500).json({ error });
   }
 
@@ -134,7 +131,6 @@ const getPatient = async (req, res) => {
 // Add HEP exercise 
 const addHEPExercise = async (req, res) => {
   const { exerciseId, frequencyByDay, frequencyByWeek, duration, durationUnits, notes, patientId, assignedById } = req.body;
-  // console.log(req.body)
   try {
     const response = await database.HEPExercise.create({
       data: {
@@ -154,6 +150,24 @@ const addHEPExercise = async (req, res) => {
   }
 }
 
+// Get HEP exercises assigned to a patient
+const getHEPExercises = async (req, res) => {
+  try {
+    let patientId = parseInt(req.params.id)
+    const HEPExercises = await database.HEPExercise.findMany({
+      where: { patientId }, 
+      include: {
+        exercise: true,
+      },
+      });
+    res.status(200).json(HEPExercises);
+  } catch (error) {
+    res.status(500).json({ error: 'Something went wrong. Try again later.' });
+  }
+}
+
+
+
 module.exports = {
   homeStats,
   addExercise,
@@ -162,5 +176,6 @@ module.exports = {
   addPatient,
   getPatient,
   addHEPExercise,
+  getHEPExercises,
   deletePatient,
 };
