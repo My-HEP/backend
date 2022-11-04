@@ -8,7 +8,7 @@ const {
 } = require('../controllers/sharedController');
 
 router.post('/createUserAccount', createUserAccount);
-router.post('/user', returnUserData);
+router.get('/user/:uid', returnUserData);
 router.put('/updateUser', updateUserData);
 
 module.exports = router;
