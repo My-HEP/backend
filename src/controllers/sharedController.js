@@ -22,8 +22,7 @@ const createUserAccount = async (req, res) => {
 };
 
 const returnUserData = async (req, res) => {
-  const uid = req.body.uid;
-  console.log(uid);
+  const uid = req.params.uid;
   try {
     const userData = await database.user.findFirst({ where: { uid: uid } });
     res.json(userData);
