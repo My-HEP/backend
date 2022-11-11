@@ -1,5 +1,4 @@
 const { PrismaClient } = require('@prisma/client');
-const { consoleSandbox } = require('@sentry/utils');
 const database = new PrismaClient();
 
 const { getAuth } = require('firebase-admin/auth');
@@ -131,6 +130,7 @@ const getPatient = async (req, res) => {
 // Add HEP exercise 
 const addHEPExercise = async (req, res) => {
   const { exerciseId, frequencyByDay, frequencyByWeek, duration, durationUnits, notes, patientId, assignedById } = req.body;
+  console.log(req.body)
   try {
     const response = await database.HEPExercise.create({
       data: {
