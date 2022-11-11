@@ -8,6 +8,7 @@ const {
   getPatient,
   addPatient,
   addHEPExercise,
+  updateHEPExercise,
   getHEPExercises,
   homeStats,
   deletePatient,
@@ -43,7 +44,7 @@ router.post('/addHEPExercise', addHEPExercise);
 router.get('/getHEPExercises/:id', getHEPExercises);
 
 // @ TODO updateHEPExercise - Kayla
-router.put('/updateHEPExercise');
+router.put('/updateHEPExercise', updateHEPExercise);
 
 // Exercise Library View/Page
 router.get('/exercises', getExercises);
