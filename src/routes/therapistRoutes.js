@@ -8,6 +8,7 @@ const {
   getPatient,
   addPatient,
   addHEPExercise,
+  getHEPExercises,
   homeStats,
   deletePatient,
 } = require('../controllers/therapistController');
@@ -38,6 +39,8 @@ router.get('/patient/:id', getPatient);
 router.delete('/deletePatient', deletePatient);
 
 router.post('/addHEPExercise', addHEPExercise);
+
+router.get('/getHEPExercises/:id', getHEPExercises);
 
 // @ TODO updateHEPExercise - Kayla
 router.put('/updateHEPExercise');
