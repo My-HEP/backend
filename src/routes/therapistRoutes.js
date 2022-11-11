@@ -37,13 +37,6 @@ router.get('/patient/:id', getPatient);
 // delete patient route
 router.delete('/deletePatient', deletePatient);
 
-
-// @ TODO update patient route - Kristen
-router.put('/updatePatient', (req, res) => {
-  res.send('update patient');
-});
-
-// @ TODO addHEPExercise - Kayla
 router.post('/addHEPExercise', addHEPExercise);
 
 // @ TODO updateHEPExercise - Kayla

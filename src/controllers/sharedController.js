@@ -11,9 +11,9 @@ const createUserAccount = async (req, res) => {
         firstName,
         lastName,
         phone,
-        uid, 
-        role
-      }
+        uid,
+        role,
+      },
     });
     res.status(200).json({ user });
   } catch (error) {
@@ -22,7 +22,7 @@ const createUserAccount = async (req, res) => {
 };
 
 const returnUserData = async (req, res) => {
-  const uid = req.body.uid;
+  const uid = req.params.uid;
   try {
     const userData = await database.user.findFirst({ where: { uid: uid } });
     res.json(userData);
@@ -31,7 +31,32 @@ const returnUserData = async (req, res) => {
   }
 };
 
+const updateUserData = async (req, res) => {
+  const { firstName, lastName, phoneNumber, email, uid, role, avatar } =
+    req.body;
+  console.log(req.body);
+  const phone = parseInt(phoneNumber.replace(/-/g, ''));
+  try {
+    const updateUser = await database.user.update({
+      where: { uid: uid },
+      data: {
+        firstName: firstName || undefined,
+        lastName: lastName || undefined,
+        phone: phone || undefined,
+        email: email || undefined,
+        role: role || undefined,
+        avatar: avatar || undefined,
+      },
+    });
+    res.status(200).json(updateUser);
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ error: 'Something went wrong. Try again later.' });
+  }
+};
+
 module.exports = {
   createUserAccount,
   returnUserData,
+  updateUserData,
 };
