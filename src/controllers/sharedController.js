@@ -1,6 +1,8 @@
 const { PrismaClient } = require('@prisma/client');
 const database = new PrismaClient();
 
+const { getAuth } = require('firebase-admin/auth');
+
 const createUserAccount = async (req, res) => {
   const { email, firstName, lastName, phoneNumber, uid, role } = req.body;
   const phone = parseInt(phoneNumber.replace(/-/g, ''));
@@ -34,8 +36,10 @@ const returnUserData = async (req, res) => {
 const updateUserData = async (req, res) => {
   const { firstName, lastName, phoneNumber, email, uid, role, avatar } =
     req.body;
-  console.log(req.body);
   const phone = parseInt(phoneNumber.replace(/-/g, ''));
+
+  const auth = getAuth();
+
   try {
     const updateUser = await database.user.update({
       where: { uid: uid },
@@ -53,6 +57,18 @@ const updateUserData = async (req, res) => {
     console.log(error);
     res.status(500).json({ error: 'Something went wrong. Try again later.' });
   }
+
+  if (email) {
+    try {
+      const user = await auth.updateUser(uid, {
+        email: email,
+      });
+      res.json(user);
+    } catch (error) {
+      const message = error.message;
+      res.json(error);
+    }
+  } else return;
 };
 
 module.exports = {
