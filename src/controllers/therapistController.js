@@ -157,8 +157,10 @@ const updateHEPExercise = async (req, res) => {
   try {
     const updateHEP = await database.HEPExercise.update({
      where: {
-      patientId,
-      exerciseId,
+      AssignmentId: {
+          patientId,
+          exerciseId
+        },
      },
      data: {
       exerciseId,
@@ -179,6 +181,7 @@ const updateHEPExercise = async (req, res) => {
 
 // Get HEP exercises assigned to a patient
 const getHEPExercises = async (req, res) => {
+  console.log('here on the backend!')
   try {
     let patientId = parseInt(req.params.id)
     const HEPExercises = await database.HEPExercise.findMany({
