@@ -58,6 +58,7 @@ const updateUserData = async (req, res) => {
     res.status(500).json({ error: 'Something went wrong. Try again later.' });
   }
 
+  // only for patient
   if (email) {
     try {
       const user = await auth.updateUser(uid, {
@@ -71,8 +72,35 @@ const updateUserData = async (req, res) => {
   } else return;
 };
 
+const updateSelfData = async (req, res) => {
+  const { firstName, lastName, phoneNumber, email, uid, role, avatar } =
+    req.body;
+  const phone = parseInt(phoneNumber.replace(/-/g, ''));
+
+  const auth = getAuth();
+
+  try {
+    const updateUser = await database.user.update({
+      where: { uid: uid },
+      data: {
+        firstName: firstName || undefined,
+        lastName: lastName || undefined,
+        phone: phone || undefined,
+        email: email || undefined,
+        role: role || undefined,
+        avatar: avatar || undefined,
+      },
+    });
+    res.status(200).json(updateUser);
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ error: 'Something went wrong. Try again later.' });
+  }
+};
+
 module.exports = {
   createUserAccount,
   returnUserData,
   updateUserData,
+  updateSelfData,
 };
