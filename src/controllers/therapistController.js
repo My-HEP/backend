@@ -150,8 +150,38 @@ const addHEPExercise = async (req, res) => {
   }
 }
 
+// Add HEP exercise 
+const updateHEPExercise = async (req, res) => {
+  const { exerciseId, frequencyByDay, frequencyByWeek, duration, durationUnits, notes, patientId, assignedById } = req.body;
+  console.log(req.body)
+  try {
+    const updateHEP = await database.HEPExercise.update({
+     where: {
+      AssignmentId: {
+          patientId,
+          exerciseId
+        },
+     },
+     data: {
+      exerciseId,
+      frequencyByDay, 
+      frequencyByWeek, 
+      duration, 
+      durationUnits, 
+      notes, 
+      patientId, 
+      assignedById 
+     }
+    });
+    res.status(200).json(updateHEP);
+  } catch (error) {
+    res.status(500).json({ error: 'Something went wrong. Try again later.' });
+  }
+}
+
 // Get HEP exercises assigned to a patient
 const getHEPExercises = async (req, res) => {
+  console.log('here on the backend!')
   try {
     let patientId = parseInt(req.params.id)
     const HEPExercises = await database.HEPExercise.findMany({
@@ -177,5 +207,6 @@ module.exports = {
   getPatient,
   addHEPExercise,
   getHEPExercises,
+  updateHEPExercise,
   deletePatient,
 };

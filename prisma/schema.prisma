@@ -11,8 +11,8 @@ datasource db {
 }
 
 model User {
-  id        Int     @id @default(autoincrement())
-  uid       String? @unique
+  id        Int    @id @default(autoincrement())
+  uid       String @unique
   lastName  String?
   firstName String?
   phone     Int
@@ -51,6 +51,7 @@ model HEPExercise {
   assignedBy User @relation(name: "Therapist", fields: [assignedById], references: [id])
   assignedById Int
   @@id([patientId, exerciseId])
+  @@unique(fields: [patientId, exerciseId], name: "AssignmentId")
 }
 
 enum Role {
