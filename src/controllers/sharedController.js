@@ -36,7 +36,7 @@ const returnUserData = async (req, res) => {
 const updateUserData = async (req, res) => {
   const { firstName, lastName, phoneNumber, email, uid, role, avatar } =
     req.body;
-  const phone = parseInt(phoneNumber.replace(/-/g, ''));
+  const phone = parseInt(phoneNumber?.replace(/-/g, ''));
 
   const auth = getAuth();
 
