@@ -10,9 +10,7 @@ const tagData = [
   { id: 5, title: 'Knee' },
 ]
 
-
 // const exerciseData = 
-
   // {
   //   id: '1jiouklkjio7891',
   //   url: 'https://images.unsplash.com/photo-1541364983171-a8ba01e95cfc?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80',
