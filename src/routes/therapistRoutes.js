@@ -9,6 +9,7 @@ const {
   addPatient,
   addHEPExercise,
   updateHEPExercise,
+  deleteHEPExercise,
   getHEPExercises,
   homeStats,
   deletePatient,
@@ -43,8 +44,11 @@ router.post('/addHEPExercise', addHEPExercise);
 
 router.get('/getHEPExercises/:id', getHEPExercises);
 
-// @ TODO updateHEPExercise - Kayla
+// updateHEPExercise
 router.put('/updateHEPExercise', updateHEPExercise);
+
+// delete exercise from library route
+router.delete('/deleteHEPExercise', deleteHEPExercise);
 
 // Exercise Library View/Page
 router.get('/exercises', getExercises);
