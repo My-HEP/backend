@@ -130,7 +130,6 @@ const getPatient = async (req, res) => {
 // Add HEP exercise 
 const addHEPExercise = async (req, res) => {
   const { exerciseId, frequencyByDay, frequencyByWeek, duration, durationUnits, notes, patientId, assignedById } = req.body;
-  console.log(req.body)
   try {
     const response = await database.HEPExercise.create({
       data: {
@@ -150,10 +149,9 @@ const addHEPExercise = async (req, res) => {
   }
 }
 
-// Add HEP exercise 
+// Update HEP exercise 
 const updateHEPExercise = async (req, res) => {
   const { exerciseId, frequencyByDay, frequencyByWeek, duration, durationUnits, notes, patientId, assignedById } = req.body;
-  console.log(req.body)
   try {
     const updateHEP = await database.HEPExercise.update({
      where: {
@@ -179,9 +177,26 @@ const updateHEPExercise = async (req, res) => {
   }
 }
 
+// Delete HEP exercise 
+const deleteHEPExercise = async (req, res) => {
+  const { patientId, exerciseId } = req.body;
+  try {
+     await database.HEPExercise.delete({
+     where: {
+      AssignmentId: {
+          patientId,
+          exerciseId
+        },
+     }
+    });
+    res.sendStatus(200);
+  } catch (error) {
+    res.status(500).json({ error: 'Something went wrong. Try again later.' });
+  }
+}
+
 // Get HEP exercises assigned to a patient
 const getHEPExercises = async (req, res) => {
-  console.log('here on the backend!')
   try {
     let patientId = parseInt(req.params.id)
     const HEPExercises = await database.HEPExercise.findMany({
@@ -208,5 +223,6 @@ module.exports = {
   addHEPExercise,
   getHEPExercises,
   updateHEPExercise,
+  deleteHEPExercise,
   deletePatient,
 };
