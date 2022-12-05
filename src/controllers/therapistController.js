@@ -203,6 +203,7 @@ const getHEPExercises = async (req, res) => {
       where: { patientId }, 
       include: {
         exercise: true,
+        assignedBy: true,
       },
       });
     res.status(200).json(HEPExercises);
