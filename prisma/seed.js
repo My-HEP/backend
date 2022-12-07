@@ -6,68 +6,76 @@ const tagData = [
   { id: 2, title: 'Strengthening' },
   { id: 3, title: 'Upper extremity' },
   { id: 4, title: 'Lower extremity' },
-  { id: 5, title: 'Knee' },
+  { id: 5, title: 'AROM' },
+  { id: 6, title: 'PROM' },
 ];
 
-const exerciseData = {
-  //   id: '1jiouklkjio7891',
-  //   url: 'https://images.unsplash.com/photo-1541364983171-a8ba01e95cfc?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80',
-  //   tags: {
-  //     connect: [{ id: 1 }, { id: 2 }, { id: 3 }],
-  //   },
-  //   title: 'Tendon glides',
-  // };
+// const exerciseData =
+//   {
+//     id: '1jiouklkjio7891',
+//     url: 'https://www.mcit.org/wp-content/uploads/2018/04/Tendon-Glide-Exercises.jpg',
+//     tags: {
+//       connect: [{ id: 1 }, { id: 3 }, { id: 6 }],
+//     },
+//     title: 'Tendon glides',
+//   };
+//   {
+//     id: '1jiouklkjio7892',
+//     url: 'https://i.pinimg.com/originals/25/cb/b4/25cbb4ad06b76168a91e9b968eb64f54.jpg',
+//     tags: {
+//       connect: [{ id: 3 }, { id: 6 }],
+//     },
+//     title: 'Digital joint blocking',
+//   };
 
-  // {
-  //   id: '1jiouklkjio7892',
-  //   url: 'https://images.unsplash.com/photo-1575558418313-edfa02db4206?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1472&q=80',
-  //   tags: {
-  //     connect: [{ id: 4 }, { id: 5 }],
-  //   },
-  //   title: 'Leg extensions',
-  // };
-
-  // {
-  //   id: '1jiouklkjio7893',
-  //   url: 'https://images.unsplash.com/photo-1583513702439-2e611c58e93d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2338&q=80',
-  //   tags: {
-  //     connect: [{ id: 3 }],
-  //   },
-  //   title: 'Weighted wrist extension',
-  // };
-  // {
-  //   id: '1jiouklkjio7894',
-  //   url: 'https://images.unsplash.com/photo-1513738781020-f0109e72554f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80',
-  //   tags: {
-  //     connect: [{ id: 4 }],
-  //   },
-  //   title: 'Median nerve glides',
-  // };
-  // {
-  //   id: '1jiouklkjio7895',
-  //   url: 'https://images.unsplash.com/photo-1530041539828-114de669390e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80',
-  //   tags: {
-  //     connect: [{ id: 3 }, { id: 1 }],
-  //   },
-  //   title: 'Tricep extension',
-  // };
-  // {
-  //   id: '1jiouklkjio7896',
-  //   url: ' https://images.unsplash.com/photo-1665897530919-37c1ccbdc056?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80',
-  //   tags: {
-  //     connect: [{ id: 1 }, { id: 2 }],
-  //   },
-  //   title: 'Wrist flexion',
-  // };
-
-  //   {
-  id: '1jiouklkjio7897',
-  url: 'https://images.unsplash.com/photo-1583513702439-2e611c58e93d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2338&q=80',
-  title: 'Ulnar nerve glides',
-  tags: {
-    connect: [{ id: 3 }, { id: 4 }],
-  },
-};
+//   {
+//     id: '1jiouklkjio7893',
+//     url: 'https://lh3.googleusercontent.com/-Nyj16rHX8bI/X7HR0ZMBC4I/AAAAAAAAPoY/X40alK7G1xEQckV4aPebBVOTahdacOIHQCLcBGAsYHQ/image.png',
+//     tags: {
+//       connect: [{ id: 1 }, { id: 3 }],
+//     },
+//     title: 'Median nerve glides',
+//   };
+//   {
+//     id: '1jiouklkjio7894',
+//     url: 'https://i0.wp.com/rehabforbetterlife.com/wp-content/uploads/2017/04/Radial-Nerve-Glides.jpg?w=1237',
+//     tags: {
+//       connect: [{ id: 1 }, { id: 3 }],
+//     },
+//     title: 'Radial nerve glides',
+//   };
+//   {
+//     id: '1jiouklkjio7895',
+//     url: 'https://cdn.flintrehab.com/uploads/2016/04/therapy-putty-exercise-blue-1024x683.jpg',
+//     tags: {
+//       connect: [{ id: 2 }, { id: 3 }],
+//     },
+//     title: 'Intrinsic hand muscle strengthening, theraputty',
+//   };
+//   {
+//     id: '1jiouklkjio7896',
+//     url: 'http://4.bp.blogspot.com/-w-F_O9PRITA/U_1U1dPlafI/AAAAAAAAALU/zC0QMY_Avig/s1600/Wrist%2BRange%2Bof%2BMotion%2BExercises.jpg',
+//     tags: {
+//       connect: [{ id: 3 }, { id: 6 }, { id: 7 }],
+//     },
+//     title: 'Wrist ROM',
+//   };
+//   {
+//     id: '1jiouklkjio7897',
+//     url: 'https://i0.wp.com/rehabforbetterlife.com/wp-content/uploads/2017/04/Tennis-Elbow-phase-1.jpg?w=1600',
+//     title: 'Tennis elbow protocol, phase 1',
+//     tags: {
+//       connect: [{ id: 2 }, { id: 3 }, { id: 6 }],
+//     },
+//   };
+//   {
+//     id: '1jiouklkjio7898',
+//     url: 'https://i0.wp.com/rehabforbetterlife.com/wp-content/uploads/2017/04/Tennis-Elbow-phase-2-1.jpg?resize=1024%2C906',
+//     title: 'Tennis elbow protocol, phase 2',
+//     tags: {
+//       connect: [{ id: 2 }, { id: 3 }, { id: 6 }],
+//     },
+//   };
 
 const userData = [
   {
@@ -162,16 +170,16 @@ const userData = [
 
 // const main = async (data) => {
 //   await database.User.createMany({
-//     data: data,
-//   });
+//    data: data,
+//  });
 // };
 
 // main(userData);
 
-const main = async (data) => {
-  await database.Exercise.create({
-    data: data,
-  });
-};
+// const main = async (data) => {
+//   await database.Exercise.create({
+//     data: data,
+//   });
+// };
 
 main(exerciseData);

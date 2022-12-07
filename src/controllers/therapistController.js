@@ -3,7 +3,7 @@ const database = new PrismaClient();
 
 const { getAuth } = require('firebase-admin/auth');
 
-// home stats for home page 
+// home stats for home page
 const homeStats = async (req, res) => {
   const patients = await database.user.findMany({
     where: { role: 'PATIENT' },
@@ -11,7 +11,7 @@ const homeStats = async (req, res) => {
   let patientsNum = patients.length;
   const exercises = await database.Exercise.findMany();
   let exercisesNum = exercises.length;
-  res.json({patientsNum, exercisesNum});
+  res.json({ patientsNum, exercisesNum });
 };
 
 // add exercise to exercise library
@@ -69,7 +69,7 @@ const deleteExercise = async (req, res) => {
     });
     res.status(200).json(deletedExercise);
   } catch (error) {
-    res.status(500).json({ error: 'Something went wrong. Try again later.' });
+    res.status(500).json({ error: error });
   }
 };
 
@@ -119,100 +119,116 @@ const deletePatient = async (req, res) => {
 
 // get patient
 const getPatient = async (req, res) => {
-  let id = parseInt(req.params.id)
+  let id = parseInt(req.params.id);
   const patient = await database.user.findUnique({
-   where: { id },
- });
+    where: { id },
+  });
 
- res.json(patient);
-}
+  res.json(patient);
+};
 
-// Add HEP exercise 
+// Add HEP exercise
 const addHEPExercise = async (req, res) => {
-  const { exerciseId, frequencyByDay, frequencyByWeek, duration, durationUnits, notes, patientId, assignedById } = req.body;
+  const {
+    exerciseId,
+    frequencyByDay,
+    frequencyByWeek,
+    duration,
+    durationUnits,
+    notes,
+    patientId,
+    assignedById,
+  } = req.body;
   try {
     const response = await database.HEPExercise.create({
       data: {
         exerciseId,
-        frequencyByDay, 
-        frequencyByWeek, 
-        duration, 
-        durationUnits, 
-        notes, 
-        patientId, 
-        assignedById 
+        frequencyByDay,
+        frequencyByWeek,
+        duration,
+        durationUnits,
+        notes,
+        patientId,
+        assignedById,
       },
     });
     res.status(200).json(response);
   } catch (error) {
     res.status(500).json({ error: 'Something went wrong. Try again later.' });
   }
-}
+};
 
-// Update HEP exercise 
+// Update HEP exercise
 const updateHEPExercise = async (req, res) => {
-  const { exerciseId, frequencyByDay, frequencyByWeek, duration, durationUnits, notes, patientId, assignedById } = req.body;
+  const {
+    exerciseId,
+    frequencyByDay,
+    frequencyByWeek,
+    duration,
+    durationUnits,
+    notes,
+    patientId,
+    assignedById,
+  } = req.body;
   try {
     const updateHEP = await database.HEPExercise.update({
-     where: {
-      AssignmentId: {
+      where: {
+        AssignmentId: {
           patientId,
-          exerciseId
+          exerciseId,
         },
-     },
-     data: {
-      exerciseId,
-      frequencyByDay, 
-      frequencyByWeek, 
-      duration, 
-      durationUnits, 
-      notes, 
-      patientId, 
-      assignedById 
-     }
+      },
+      data: {
+        exerciseId,
+        frequencyByDay,
+        frequencyByWeek,
+        duration,
+        durationUnits,
+        notes,
+        patientId,
+        assignedById,
+      },
     });
     res.status(200).json(updateHEP);
   } catch (error) {
     res.status(500).json({ error: 'Something went wrong. Try again later.' });
   }
-}
+};
 
-// Delete HEP exercise 
+// Delete HEP exercise
 const deleteHEPExercise = async (req, res) => {
   const { patientId, exerciseId } = req.body;
   try {
-     await database.HEPExercise.delete({
-     where: {
-      AssignmentId: {
+    await database.HEPExercise.delete({
+      where: {
+        AssignmentId: {
           patientId,
-          exerciseId
+          exerciseId,
         },
-     }
+      },
     });
     res.sendStatus(200);
   } catch (error) {
     res.status(500).json({ error: 'Something went wrong. Try again later.' });
   }
-}
+};
 
 // Get HEP exercises assigned to a patient
 const getHEPExercises = async (req, res) => {
   try {
-    let patientId = parseInt(req.params.id)
+    let patientId = parseInt(req.params.id);
     const HEPExercises = await database.HEPExercise.findMany({
-      where: { patientId }, 
+      where: { patientId },
       include: {
         exercise: true,
         assignedBy: true,
       },
-      });
+    });
     res.status(200).json(HEPExercises);
   } catch (error) {
     res.status(500).json({ error: 'Something went wrong. Try again later.' });
   }
-}
-
-
+};
 
 module.exports = {
   homeStats,
