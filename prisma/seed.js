@@ -10,15 +10,15 @@ const tagData = [
   { id: 6, title: 'PROM' },
 ];
 
-// const exerciseData =
-//   {
-//     id: '1jiouklkjio7891',
-//     url: 'https://www.mcit.org/wp-content/uploads/2018/04/Tendon-Glide-Exercises.jpg',
-//     tags: {
-//       connect: [{ id: 1 }, { id: 3 }, { id: 6 }],
-//     },
-//     title: 'Tendon glides',
-//   };
+// const exerciseData = {
+//   id: '1jiouklkjio7891',
+//   url: 'https://www.mcit.org/wp-content/uploads/2018/04/Tendon-Glide-Exercises.jpg',
+//   tags: {
+//     connect: [{ id: 1 }, { id: 3 }, { id: 6 }],
+//   },
+//   title: 'Tendon glides',
+// };
+
 //   {
 //     id: '1jiouklkjio7892',
 //     url: 'https://i.pinimg.com/originals/25/cb/b4/25cbb4ad06b76168a91e9b968eb64f54.jpg',
@@ -53,13 +53,13 @@ const tagData = [
 //     title: 'Intrinsic hand muscle strengthening, theraputty',
 //   };
 //   {
-//     id: '1jiouklkjio7896',
-//     url: 'http://4.bp.blogspot.com/-w-F_O9PRITA/U_1U1dPlafI/AAAAAAAAALU/zC0QMY_Avig/s1600/Wrist%2BRange%2Bof%2BMotion%2BExercises.jpg',
-//     tags: {
-//       connect: [{ id: 3 }, { id: 6 }, { id: 7 }],
-//     },
-//     title: 'Wrist ROM',
-//   };
+//   id: '1jiouklkjio7896',
+//   url: 'http://4.bp.blogspot.com/-w-F_O9PRITA/U_1U1dPlafI/AAAAAAAAALU/zC0QMY_Avig/s1600/Wrist%2BRange%2Bof%2BMotion%2BExercises.jpg',
+//   tags: {
+//     connect: [{ id: 3 }, { id: 5 }, { id: 6 }],
+//   },
+//   title: 'Wrist ROM',
+// };
 //   {
 //     id: '1jiouklkjio7897',
 //     url: 'https://i0.wp.com/rehabforbetterlife.com/wp-content/uploads/2017/04/Tennis-Elbow-phase-1.jpg?w=1600',
@@ -69,13 +69,13 @@ const tagData = [
 //     },
 //   };
 //   {
-//     id: '1jiouklkjio7898',
-//     url: 'https://i0.wp.com/rehabforbetterlife.com/wp-content/uploads/2017/04/Tennis-Elbow-phase-2-1.jpg?resize=1024%2C906',
-//     title: 'Tennis elbow protocol, phase 2',
-//     tags: {
-//       connect: [{ id: 2 }, { id: 3 }, { id: 6 }],
-//     },
-//   };
+//   id: '1jiouklkjio7898',
+//   url: 'https://i0.wp.com/rehabforbetterlife.com/wp-content/uploads/2017/04/Tennis-Elbow-phase-2-1.jpg?resize=1024%2C906',
+//   title: 'Tennis elbow protocol, phase 2',
+//   tags: {
+//     connect: [{ id: 2 }, { id: 3 }, { id: 6 }],
+//   },
+// };
 
 const userData = [
   {
@@ -160,18 +160,18 @@ const userData = [
   },
 ];
 
-// const main = async (data) => {
-//   await database.Tag.createMany({
-//     data: data,
-//   });
-// };
+const main = async (data) => {
+  await database.Tag.createMany({
+    data: data,
+  });
+};
 
-// main(tagData);
+main(tagData);
 
 // const main = async (data) => {
 //   await database.User.createMany({
-//    data: data,
-//  });
+//     data: data,
+//   });
 // };
 
 // main(userData);
@@ -182,4 +182,4 @@ const userData = [
 //   });
 // };
 
-main(exerciseData);
+// main(exerciseData);
